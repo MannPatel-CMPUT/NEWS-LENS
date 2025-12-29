@@ -109,15 +109,51 @@ def most_common_words(collection):
             
     
 def article_count_difference(collection):
+
+    months = {"January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    }
+ 
     while True:
         print("")
         date = input("Please enter a date (e.g., September 1, 2015) or press 'q' to return to the main menu: : ").strip()
         print("")
 
         # Return to menu
-        if date == "q":
+        if date.lower() == "q":
             print("Returning to the Main Menu...\n")
             return
+        
+        if "," not in date:
+            print("Invalid Input!!!\n Please enter a date (e.g., September 1, 2015) or press 'q' to return to the main menu :")
+            continue
+
+        parts = date.split(",")
+        if len(parts)!=2:
+            print("Invalid Input!!!\n Please enter a date (e.g., September 1, 2015) or press 'q' to return to the main menu :")
+            continue
+
+        month_day = parts[0].strip().split()
+        year = parts[1].strip()
+
+        if len(month_day) != 2:
+            print("Invalid Input!!!\n Please enter a date (e.g., September 1, 2015) or press 'q' to return to the main menu :")
+            continue
+
+        month, day = month_day
+
+        if month not in months:
+            print("Invalid month name.\n")
+            continue
+
+        if not day.isdigit() or not (1 <= int(day) <= 31):
+            print("Invalid day.\n")
+            continue
+
+        if not year.isdigit() or len(year) != 4:
+            print("Invalid year.\n")
+            continue
+
          
         dt = datetime.strptime(date, "%B %d, %Y")
         d = dt.strftime("%Y-%m-%d")
@@ -136,20 +172,23 @@ def article_count_difference(collection):
 
         if not articles:
             print("No articles were published on this day.\n")
+            continue
+
+        news_count = 0
+        blog_count = 0
 
         for doc in articles:
             print(f"The number of {doc['_id']} articles are:\n")
             print(f"{doc['_id']} - {doc['count']}\n")
 
-        news_count = 0
-        blog_count = 0
+        
         
         #counting media types
         for doc in articles:
             if doc['_id'] == "news":
                 news_count = doc['count']
             
-            if doc['_id'] == "blog":
+            elif doc['_id'] == "blog":
                 blog_count = doc['count']
                 
         # printing results
