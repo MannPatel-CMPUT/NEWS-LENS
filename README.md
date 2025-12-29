@@ -1,8 +1,38 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/THJ5OpUp)
-# CMPUT 291 Project 2 - Fall 2025  
-Group member names and ccids (2-3 members)  
-  mannjayp, Mann Patel 
-  
-  
+# NewsLens – News & Blog Analytics System
 
-# Names of anyone you have collaborated with (as much as it is allowed within the course policy) or a line saying that you did not collaborate with anyone else.  
+## Overview
+NewsLens is a Python-based analytics system that processes and analyzes
+news and blog article datasets using MongoDB. The application provides
+insights such as article counts by date, source-based trends, and
+content statistics through a menu-driven interface.
+
+## Features
+- Load large JSON datasets into MongoDB
+- Compare article counts between news and blogs by date
+- Query article statistics using aggregation pipelines
+- Robust user input validation for dates
+- Graceful handling of cases where no articles exist for a given date
+
+## Tech Stack
+- Python
+- MongoDB
+- PyMongo
+
+## How to Run
+## How to Run
+
+### 1. Start MongoDB locally
+```bash
+mkdir -p mongo-data
+mongod --port 27015 --dbpath ./mongo-data
+```
+
+### 2. Load the dataset
+```bash
+python3 load-json.py <dataset.json> 27015
+```
+
+### 3. Run the application
+```bash
+python3 phase2_query.py
+```
