@@ -13,7 +13,6 @@
 - [Getting Started](#-getting-started)
 - [Usage](#-usage)
 - [Sample Queries](#-sample-queries)
-- [Improvements Roadmap](#-improvements-roadmap)
 - [Author](#-author)
 
 ---
